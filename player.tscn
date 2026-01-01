@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd5gswt836urv"]
+
+[ext_resource type="Texture2D" uid="uid://s3ulg4yc2b1l" path="res://icon.svg" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://msp7idaxn4qc" path="res://player.gd" id="1_onrkg"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.12499999, 0.12499999)
+texture = ExtResource("1_4flbx")
+
+[node name="InputBuffer" type="Timer" parent="."]
+wait_time = 0.3

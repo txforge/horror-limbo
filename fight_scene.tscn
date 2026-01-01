@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqtkm3susbv45"]
+
+[ext_resource type="Script" uid="uid://ddin0a145qk58" path="res://fight_scene.gd" id="1_62sil"]
+[ext_resource type="Script" uid="uid://150utolbs3jq" path="res://set_up_fight.gd" id="2_1v880"]
+[ext_resource type="PackedScene" uid="uid://cxynrm7y8po68" path="res://tile.tscn" id="3_1rklm"]
+[ext_resource type="PackedScene" uid="uid://dd5gswt836urv" path="res://player.tscn" id="3_tmx0f"]
+
+[node name="fight scene" type="Node2D"]
+script = ExtResource("1_62sil")
+
+[node name="SetUpFight" type="Node2D" parent="."]
+script = ExtResource("2_1v880")
+player_scene = ExtResource("3_tmx0f")
+game_scale = 6
+tile_scene = ExtResource("3_1rklm")
+bottom_margin = 100

@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://brm52r1q1raj4"]
+
+[ext_resource type="Texture2D" uid="uid://c7ms1f2vr7in5" path="res://pngwing.com.png" id="1_ep8l3"]
+[ext_resource type="Script" uid="uid://iq4dkohyn83k" path="res://character.gd" id="2_0raqs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bvp3"]
+albedo_color = Color(0.40392157, 0.2627451, 0.09803922, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lquwl"]
+material = SubResource("StandardMaterial3D_1bvp3")
+size = Vector3(0.65, 0.52, 0.45)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0xm2m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ep8l3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Desk" type="Node3D"]
+
+[node name="Desk Model" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_lquwl")
+skeleton = NodePath("../..")
+
+[node name="Character" type="AnimatedSprite3D" parent="Desk Model"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.23387629, 0.43456852)
+sprite_frames = SubResource("SpriteFrames_0xm2m")
+script = ExtResource("2_0raqs")

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt7wqd0bofdvk"]
+
+[ext_resource type="Script" uid="uid://qstahy3ev7it" path="res://test_SpawnDesk.gd" id="1_37kl0"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_37kl0"]
+size = Vector2(7, 5)
+
+[node name="test" type="Node3D"]
+script = ExtResource("1_37kl0")
+RADIUS = 1.0
+STARTING_ANGLE = -18.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 5.200654, 0)
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0002952814, 2.3841858e-07, 0.0033763647)
+mesh = SubResource("PlaneMesh_37kl0")
