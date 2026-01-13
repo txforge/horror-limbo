@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dd5gswt836urv"]
+
+[ext_resource type="Script" uid="uid://msp7idaxn4qc" path="res://scripts/player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://bcojk6wg4p46" path="res://assets/sprites/icon.svg" id="2_g2els"]
+[ext_resource type="Script" uid="uid://ydrwjx47lit3" path="res://scripts/input_holder.gd" id="3_qhqgy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(14, 14)
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.12499999, 0.12499999)
+texture = ExtResource("2_g2els")
+
+[node name="InputBuffer" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_g2els")
+
+[node name="InputHolder" type="Node" parent="."]
+script = ExtResource("3_qhqgy")

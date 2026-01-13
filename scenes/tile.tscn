@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxynrm7y8po68"]
+
+[ext_resource type="Texture2D" uid="uid://dt2w6qo5bgawy" path="res://assets/sprites/tile.png" id="1_n3f48"]
+[ext_resource type="Script" uid="uid://r56k0mw01cct" path="res://scripts/tile.gd" id="1_ywnoi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ywnoi"]
+size = Vector2(14, 14)
+
+[node name="Tile" type="Node2D"]
+script = ExtResource("1_ywnoi")
+
+[node name="Tile_" type="Sprite2D" parent="."]
+texture = ExtResource("1_n3f48")
+
+[node name="Hitbox" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_ywnoi")
+
+[node name="ClickArea" type="Area2D" parent="." groups=["shootable_world"]]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea"]
+shape = SubResource("RectangleShape2D_ywnoi")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

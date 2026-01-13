@@ -1,11 +1,6 @@
-res://main.tscn
-res://test.tscn
-res://test_SpawnDesk.gd
-res://Desk.tscn
-res://character.gd
-res://circlepath.gd
-res://tile.tscn
-res://fight_scene.tscn
-res://set_up_fight.gd
-res://player.tscn
-res://player.gd
+res://scenes/fight_scene.tscn
+res://scripts/set_up_fight.gd
+res://scripts/input_manager.gd
+res://scripts/game_config.gd
+res://scripts/tile.gd
+res://scripts/player.gd

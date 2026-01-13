@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcn7ybl3tyf3p"]
+
+[ext_resource type="Script" uid="uid://yxfvitle1fsw" path="res://scripts/boss.gd" id="1_boss_script"]
+[ext_resource type="Texture2D" uid="uid://bcojk6wg4p46" path="res://assets/sprites/icon.svg" id="2_icon"]
+[ext_resource type="Script" uid="uid://bo4njhup16e2y" path="res://scripts/combat.gd" id="3_combat"]
+
+[node name="Boss" type="VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+size_flags_vertical = 4
+script = ExtResource("1_boss_script")
+
+[node name="BossNameLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Boss"
+horizontal_alignment = 1
+
+[node name="BossIconSprite" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_icon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(180, 20)
+layout_mode = 2
+value = 100.0
+show_percentage = false
+
+[node name="PhaseIndicator" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Phase 1"
+horizontal_alignment = 1
+
+[node name="Combat" type="Node" parent="."]
+script = ExtResource("3_combat")
