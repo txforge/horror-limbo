@@ -1,6 +1,0 @@
-res://scenes/fight_scene.tscn
-res://scripts/set_up_fight.gd
-res://scripts/input_manager.gd
-res://scripts/game_config.gd
-res://scripts/tile.gd
-res://scripts/player.gd
