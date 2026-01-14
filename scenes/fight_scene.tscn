@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqtkm3susbv45"]
+[gd_scene load_steps=6 format=3 uid="uid://bqtkm3susbv45"]
 
 [ext_resource type="Script" uid="uid://ddin0a145qk58" path="res://scripts/fight_scene.gd" id="1_62sil"]
 [ext_resource type="Script" uid="uid://150utolbs3jq" path="res://scripts/set_up_fight.gd" id="2_1v880"]
 [ext_resource type="PackedScene" uid="uid://cxynrm7y8po68" path="res://scenes/tile.tscn" id="3_1rklm"]
 [ext_resource type="PackedScene" uid="uid://dd5gswt836urv" path="res://scenes/player.tscn" id="3_tmx0f"]
 [ext_resource type="PackedScene" uid="uid://bcn7ybl3tyf3p" path="res://scenes/boss.tscn" id="4_7aqs0"]
-[ext_resource type="Script" uid="uid://bmc3rdfe468q3" path="res://scripts/bottom_sfondo.gd" id="5_bottom_script"]
 
 [node name="fight scene" type="Node2D"]
 script = ExtResource("1_62sil")
@@ -49,26 +48,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 40
-alignment = 1
-
-[node name="bottom sfondo" type="ColorRect" parent="Boss HUD" groups=["shootable"]]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -300.0
-grow_horizontal = 2
-grow_vertical = 0
-color = Color(0.18000486, 0.18000486, 0.18000486, 1)
-script = ExtResource("5_bottom_script")
-
-[node name="text container" type="HBoxContainer" parent="Boss HUD/bottom sfondo"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 20
 alignment = 1

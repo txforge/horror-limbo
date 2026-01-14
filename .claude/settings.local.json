@@ -4,7 +4,9 @@
       "Bash(mkdir:*)",
       "Bash(git mv:*)",
       "Bash(test:*)",
-      "Bash(git rm:*)"
+      "Bash(git rm:*)",
+      "Bash(tree:*)",
+      "Bash(dir /B \"c:\\\\Users\\\\gatto\\\\Documents\\\\GitHub\\\\horror-limbo\\\\scripts\")"
     ]
   }
 }
