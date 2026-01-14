@@ -20,6 +20,7 @@ signal bosses_spawned(bosses: Array[Node])
 @export var rows: int = 0
 @export var columns: int = 0
 @export var visual_scale: int = 4
+@export var horizontal_offset_adjustment: float = 0.0
 
 var _tile_size: int = 0
 var _grid_offset: Vector2 = Vector2.ZERO
@@ -36,6 +37,7 @@ func _ready() -> void:
 func _initialize_grid() -> void:
 	_grid_rows = 5
 	_grid_columns = 17
+	# Override visual scale if set to 4 - adjust to 6 for better display
 	if visual_scale == 4:
 		visual_scale = 6
 	_tile_size = GameConfig.TILE_SIZE * visual_scale
@@ -51,11 +53,14 @@ func _emit_setup_complete() -> void:
 
 func _calculate_grid_offset() -> Vector2:
 	var viewport_size: Vector2 = get_viewport_rect().size
-	var screen_center: Vector2 = viewport_size / 2.0
-	var center_row: int = _grid_rows / 2
-	var center_column: int = _grid_columns / 2
-	var center_tile_local_pos := Vector2(center_column * _tile_size, center_row * _tile_size)
-	return screen_center - center_tile_local_pos
+	var grid_width: float = _grid_columns * _tile_size
+	var grid_height: float = _grid_rows * _tile_size
+
+	# Center the grid horizontally and align to bottom
+	var x_offset: float = (viewport_size.x - grid_width) / 2.0
+	var y_offset: float = viewport_size.y - grid_height
+
+	return Vector2(x_offset, y_offset)
 
 func _setup_tiles() -> void:
 	if tile_scene == null:
@@ -70,7 +75,8 @@ func _spawn_tile_at(row: int, column: int) -> void:
 	if tile_instance == null:
 		return
 	add_child(tile_instance)
-	var x: float = column * _tile_size
+	# Add half tile size to X for centered positioning
+	var x: float = column * _tile_size + (_tile_size / 2.0)
 	var y: float = row * _tile_size
 	tile_instance.position = Vector2(x, y) + _grid_offset
 	tile_instance.scale = Vector2(visual_scale, visual_scale)
@@ -83,8 +89,8 @@ func _spawn_tile_at(row: int, column: int) -> void:
 	tile_spawned.emit(tile_instance, row, column)
 
 func _spawn_player() -> void:
-	var center_row: int = _grid_rows / 2
-	var center_column: int = _grid_columns / 2
+	var center_row: int = int(_grid_rows / 2.0)
+	var center_column: int = int(_grid_columns / 2.0)
 	_spawn_player_at(center_row, center_column)
 
 func _spawn_player_at(row: int, column: int) -> void:

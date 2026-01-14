@@ -1,0 +1,5 @@
+res://scripts/boss.gd
+res://scripts/fight_scene.gd
+res://scripts/player.gd
+res://scenes/boss.tscn
+res://text_buble_style.tres

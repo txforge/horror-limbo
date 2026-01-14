@@ -6,7 +6,8 @@
       "Bash(test:*)",
       "Bash(git rm:*)",
       "Bash(tree:*)",
-      "Bash(dir /B \"c:\\\\Users\\\\gatto\\\\Documents\\\\GitHub\\\\horror-limbo\\\\scripts\")"
+      "Bash(dir /B \"c:\\\\Users\\\\gatto\\\\Documents\\\\GitHub\\\\horror-limbo\\\\scripts\")",
+      "Bash(find:*)"
     ]
   }
 }

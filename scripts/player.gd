@@ -15,6 +15,7 @@ var _current_column: int = -1
 var _is_moving: bool = false
 var _buffered_direction: Vector2i = Vector2i.ZERO
 var _tile_cache: Dictionary = {}
+var _entities_cache: Array[Node] = []
 var _input_manager: Node = null
 var _movement_tween: Tween = null
 
@@ -23,6 +24,7 @@ func _ready() -> void:
 	_setup_input_buffer()
 	_connect_to_input_manager()
 	_cache_tiles()
+	_cache_entities()
 
 func _validate_nodes() -> void:
 	if _input_buffer_timer == null:
@@ -59,6 +61,12 @@ func _cache_tiles() -> void:
 		var column: int = tile.get_meta("grid_column")
 		var key := Vector2i(row, column)
 		_tile_cache[key] = tile
+
+func _cache_entities() -> void:
+	await get_tree().process_frame
+	_entities_cache = get_tree().get_nodes_in_group("entities")
+	if _entities_cache.is_empty():
+		push_warning("Player: No entities found")
 
 func _on_movement_requested(direction: Vector2i) -> void:
 	if _is_moving:
@@ -113,13 +121,13 @@ func _is_tile_occupied(tile: Node) -> bool:
 		var occupant: Node = tile.get_meta("occupied_by")
 		if occupant != null and is_instance_valid(occupant) and occupant != self:
 			return true
-	var entities_at_tile: Array[Node] = get_tree().get_nodes_in_group("entities")
-	for entity in entities_at_tile:
+	for entity in _entities_cache:
 		if entity == self or not is_instance_valid(entity):
 			continue
 		if entity.has_method("get_grid_position"):
 			var entity_pos: Vector2i = entity.get_grid_position()
-			if entity_pos == Vector2i(_current_row, _current_column):
+			var tile_pos: Vector2i = Vector2i(tile.get_meta("grid_row", -1), tile.get_meta("grid_column", -1))
+			if entity_pos == tile_pos:
 				return true
 	return false
 

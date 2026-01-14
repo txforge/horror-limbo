@@ -60,8 +60,7 @@ func dmg_highlight(duration: float = GameConfig.HIGHLIGHT_DURATION) -> void:
 	var column: int = get_meta("grid_column", -1)
 	print("💥 Tile [", row, ", ", column, "] dealing damage (red) for ", duration, "s")
 	_set_highlight_state(HighlightState.DAMAGE)
-	apply_hitbox(duration)
-	await get_tree().create_timer(duration).timeout
+	await apply_hitbox(duration)
 	_set_highlight_state(HighlightState.IDLE)
 
 func _set_highlight_state(state: HighlightState) -> void:

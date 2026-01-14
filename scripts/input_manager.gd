@@ -276,10 +276,10 @@ func _is_valid_gui_target(control: Control, pos: Vector2) -> bool:
 		return false
 
 	# Check if it has the required methods or is in the correct group
-	var has_method: bool = control.has_method("on_shot") or control.has_method("take_damage")
+	var has_required_method: bool = control.has_method("on_shot") or control.has_method("take_damage")
 	var in_group: bool = control.is_in_group(GameConfig.GROUP_TEXT_TARGET)
 
-	return has_method or in_group
+	return has_required_method or in_group
 
 ## Finds world targets (physics bodies) at the given position
 func _find_world_target_at_position(_screen_pos: Vector2) -> Node:
