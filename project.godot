@@ -23,24 +23,27 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 [dialogic]
 
 directories/dch_directory={
-"Boss1": "res://Boss1.dch",
-"Boss2": "res://Boss2.dch",
-"Boss3": "res://Boss3.dch",
-"Boss4": "res://Boss4.dch",
+"Boss1": "res://characters/Boss1.dch",
+"Boss2": "res://characters/Boss2.dch",
+"Boss3": "res://characters/Boss3.dch",
+"Boss4": "res://characters/Boss4.dch",
+"main character": "res://characters/main character.dch",
 "unit_test_character": "res://Tests/Resources/unit_test_character.dch"
 }
 directories/dtl_directory={
-"timeline": "res://timeline.dtl"
+"intro timeline": "res://timelines/intro timeline.dtl",
+"timeline": "res://timelines/timeline.dtl"
 }
 layout/style_directory={
-"": "res://text_buble_style.tres",
 "Visual Novel Style": "res://addons/dialogic/Modules/DefaultLayoutParts/Style_VN_Default/default_vn_style.tres",
-"text_buble_style": "res://text_buble_style.tres"
+"text_buble_style": "res://styles/text_buble_style.tres"
 }
 glossary/default_case_sensitive=true
-layout/style_list=["res://text_buble_style.tres", "res://addons/dialogic/Modules/DefaultLayoutParts/Style_VN_Default/default_vn_style.tres"]
+layout/style_list=["res://styles/text_buble_style.tres", "res://addons/dialogic/Modules/DefaultLayoutParts/Style_VN_Default/default_vn_style.tres"]
 layout/default_style="res://text_buble_style.tres"
-variables={}
+variables={
+"test": 0
+}
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01
 text/initial_text_reveal_skippable=true
@@ -81,6 +84,8 @@ audio/channel_defaults={
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+mouse_cursor/custom_image="uid://dkehm5ka5g677"
+mouse_cursor/custom_image_hotspot=Vector2(36, 36)
 
 [editor_plugins]
 

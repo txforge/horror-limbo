@@ -3,6 +3,7 @@ extends VBoxContainer
 @export var max_health: int = GameConfig.BOSS_DEFAULT_MAX_HEALTH
 @export var boss_name: String = "Boss"
 @export var boss_index: int = 0
+@export var dialogic_character: Resource  # DialogicCharacter - assegna nell'editor
 
 var _current_health: int = 0
 

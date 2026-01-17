@@ -60,7 +60,10 @@ func _ready() -> void:
 ## Sets up custom mouse cursor
 func _setup_custom_cursor() -> void:
 	if MOUSE_CURSOR != null:
-		Input.set_custom_mouse_cursor(MOUSE_CURSOR)
+		# Calcola l'hotspot al centro dell'immagine
+		var cursor_size: Vector2 = MOUSE_CURSOR.get_size()
+		var hotspot: Vector2 = cursor_size / 2.0
+		Input.set_custom_mouse_cursor(MOUSE_CURSOR, Input.CURSOR_ARROW, hotspot)
 
 ## Sets up the timer for combo input window
 func _setup_combo_timer() -> void:

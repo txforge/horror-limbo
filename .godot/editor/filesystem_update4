@@ -1,0 +1,25 @@
+res://scenes/fight_scene.tscn
+res://text_buble_style.tres
+res://addons/dialogic/Modules/DefaultLayoutParts/Style_VN_Default/default_vn_style.tres
+res://timeline.dtl
+res://Boss1.dch
+res://Boss2.dch
+res://Boss3.dch
+res://Boss4.dch
+res://intro timeline.dtl
+res://main character.dch
+res://scripts/fight_scene.gd
+res://timelines/intro timeline.dtl
+res://addons/dialogic/Core/DialogicGameHandler.gd
+res://characters/main character.dch
+res://styles/text_buble_style.tres
+res://characters/Boss2.dch
+res://characters/Boss3.dch
+res://characters/Boss4.dch
+res://characters/Boss1.dch
+res://scripts/boss.gd
+res://scripts/input_holder.gd
+res://scenes/player.tscn
+res://scripts/input_manager.gd
+res://scenes/tile.tscn
+res://scripts/set_up_fight.gd

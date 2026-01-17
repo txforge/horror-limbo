@@ -6,13 +6,5 @@
 
 extends Node
 
-const MOUSE_CURSOR = preload("res://assets/sprites/cursor.png")
-
 func _ready() -> void:
-	# Imposta solo il cursore custom
-	Input.set_custom_mouse_cursor(MOUSE_CURSOR)
-
-	# NON processare input - delegato a InputManager
-	set_process(false)
-
-	push_warning("InputHolder è deprecato! Usa InputManager singleton invece.")
+	pass

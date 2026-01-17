@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqtkm3susbv45"]
+[gd_scene load_steps=10 format=3 uid="uid://bqtkm3susbv45"]
 
 [ext_resource type="Script" uid="uid://ddin0a145qk58" path="res://scripts/fight_scene.gd" id="1_62sil"]
 [ext_resource type="Script" uid="uid://150utolbs3jq" path="res://scripts/set_up_fight.gd" id="2_1v880"]
 [ext_resource type="PackedScene" uid="uid://cxynrm7y8po68" path="res://scenes/tile.tscn" id="3_1rklm"]
 [ext_resource type="PackedScene" uid="uid://dd5gswt836urv" path="res://scenes/player.tscn" id="3_tmx0f"]
 [ext_resource type="PackedScene" uid="uid://bcn7ybl3tyf3p" path="res://scenes/boss.tscn" id="4_7aqs0"]
+[ext_resource type="Resource" uid="uid://cfbvlayxusdw" path="res://characters/Boss1.dch" id="5_boss1_char"]
+[ext_resource type="Resource" uid="uid://icscot7nbc7p" path="res://characters/Boss2.dch" id="6_boss2_char"]
+[ext_resource type="Resource" uid="uid://bavb7i30sw66b" path="res://characters/Boss3.dch" id="7_boss3_char"]
+[ext_resource type="Resource" uid="uid://b5s8oteqd7etb" path="res://characters/Boss4.dch" id="8_boss4_char"]
 
 [node name="fight scene" type="Node2D"]
 script = ExtResource("1_62sil")
@@ -46,3 +50,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 150
 alignment = 1
+
+[node name="Boss1" parent="Boss HUD/top sfondo/boss container" instance=ExtResource("4_7aqs0")]
+layout_mode = 2
+boss_name = "Boss 1"
+dialogic_character = ExtResource("5_boss1_char")
+
+[node name="Boss2" parent="Boss HUD/top sfondo/boss container" instance=ExtResource("4_7aqs0")]
+layout_mode = 2
+boss_name = "Boss 2"
+boss_index = 1
+dialogic_character = ExtResource("6_boss2_char")
+
+[node name="Boss3" parent="Boss HUD/top sfondo/boss container" instance=ExtResource("4_7aqs0")]
+layout_mode = 2
+boss_name = "Boss 3"
+boss_index = 2
+dialogic_character = ExtResource("7_boss3_char")
+
+[node name="Boss4" parent="Boss HUD/top sfondo/boss container" instance=ExtResource("4_7aqs0")]
+layout_mode = 2
+boss_name = "Boss 4"
+boss_index = 3
+dialogic_character = ExtResource("8_boss4_char")

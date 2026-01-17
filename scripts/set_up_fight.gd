@@ -81,7 +81,7 @@ func _spawn_tile_at(row: int, column: int) -> void:
 	var x: float = column * _tile_size + (_tile_size / 2.0)
 	var y: float = row * _tile_size
 	tile_instance.position = Vector2(x, y) + _grid_offset
-	tile_instance.scale = Vector2(visual_scale, visual_scale)
+	# Scale impostata direttamente nella scena tile.tscn (6x)
 	tile_instance.add_to_group(GameConfig.GROUP_TILES)
 	if tile_instance.has_method("set_grid_position"):
 		tile_instance.set_grid_position(row, column)
@@ -105,55 +105,39 @@ func _spawn_player_at(row: int, column: int) -> void:
 	if _player_instance == null:
 		return
 	add_child(_player_instance)
-	var x: float = column * _tile_size
+	# Centra il player orizzontalmente come le tile (Y allineato al top)
+	var x: float = column * _tile_size + (_tile_size / 2.0)
 	var y: float = row * _tile_size
 	_player_instance.position = Vector2(x, y) + _grid_offset
 	if _player_instance.has_method("set_grid_position"):
 		_player_instance.set_grid_position(row, column)
-	var player_scale: float = visual_scale * 0.9
-	_player_instance.scale = Vector2(player_scale, player_scale)
+	# Scale impostata direttamente nella scena player.tscn (5.4x)
 	_player_instance.add_to_group("player")
 	_player_instance.add_to_group("entities")
 	player_spawned.emit(_player_instance)
 
 func _spawn_bosses() -> void:
+	# I boss sono già nella scena, li recuperiamo dal container
 	var boss_container: Node = get_node_or_null(boss_container_path)
 	if boss_container == null:
+		push_warning("SetUpFight: Boss container non trovato!")
 		return
-	var boss_configs: Array[Dictionary] = [
-		{"name": "Re della Mensa", "scene": boss_1_scene},
-		{"name": "Petite Hulk", "scene": boss_2_scene},
-		{"name": "Boss dei Tetti", "scene": boss_3_scene},
-		{"name": "Presidente", "scene": boss_4_scene}
-	]
+
 	_boss_instances.clear()
-	for i in range(boss_configs.size()):
-		var boss: Node = _spawn_boss(i, boss_configs[i]["name"], boss_configs[i]["scene"], boss_container)
-		if boss != null:
-			_boss_instances.append(boss)
+	# Recupera i boss già presenti nel container
+	for child in boss_container.get_children():
+		if child.has_method("set"):
+			# Aggiungi ai gruppi se non è già presente
+			if not child.is_in_group("bosses"):
+				child.add_to_group("bosses")
+			if not child.is_in_group("entities"):
+				child.add_to_group("entities")
+		_boss_instances.append(child)
+
+	print("DEBUG: Trovati ", _boss_instances.size(), " boss nel container")
 	bosses_spawned.emit(_boss_instances)
 
-func _spawn_boss(index: int, display_name: String, boss_scene: PackedScene, container: Node) -> Node:
-	if boss_scene == null or container == null:
-		return null
-	var boss_instance: Node = boss_scene.instantiate()
-	if boss_instance == null:
-		return null
-	container.add_child(boss_instance)
-
-	# Imposta il nome del nodo per Dialogic (Boss1, Boss2, etc.)
-	var dialogic_name = "Boss" + str(index + 1)
-	boss_instance.name = dialogic_name
-
-	if boss_instance.has_method("set"):
-		boss_instance.set("boss_index", index)
-		boss_instance.set("boss_name", display_name)
-	boss_instance.add_to_group("bosses")
-	boss_instance.add_to_group("entities")
-
-	print("DEBUG: Boss creato: ", dialogic_name, " - Posizione: ", boss_instance.get_global_position() if boss_instance is Node2D or boss_instance is Control else "N/A")
-
-	return boss_instance
+# Funzione rimossa - i boss sono ora creati direttamente nell'editor
 
 func get_player() -> Node:
 	return _player_instance

@@ -1,0 +1,7 @@
+[style name="Visual Novel Style"]
+join "main character" center
+"main character": ciao ti va di sentire una storia?
+- yup
+	maa bravo
+- no
+	fottiti si va avanti uguale
