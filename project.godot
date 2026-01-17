@@ -29,14 +29,53 @@ directories/dch_directory={
 "Boss4": "res://Boss4.dch",
 "unit_test_character": "res://Tests/Resources/unit_test_character.dch"
 }
-directories/dtl_directory={}
+directories/dtl_directory={
+"timeline": "res://timeline.dtl"
+}
 layout/style_directory={
 "": "res://text_buble_style.tres",
+"Visual Novel Style": "res://addons/dialogic/Modules/DefaultLayoutParts/Style_VN_Default/default_vn_style.tres",
 "text_buble_style": "res://text_buble_style.tres"
 }
 glossary/default_case_sensitive=true
-layout/style_list=["res://text_buble_style.tres"]
+layout/style_list=["res://text_buble_style.tres", "res://addons/dialogic/Modules/DefaultLayoutParts/Style_VN_Default/default_vn_style.tres"]
 layout/default_style="res://text_buble_style.tres"
+variables={}
+extensions_folder="res://addons/dialogic_additions"
+text/letter_speed=0.01
+text/initial_text_reveal_skippable=true
+text/text_reveal_skip_delay=0.1
+text/advance_delay=0.1
+text/autoadvance_per_character_delay=0.1
+text/autoadvance_ignored_characters_enabled=true
+animations/join_default_length=0.5
+animations/join_default_wait=true
+animations/leave_default_length=0.5
+animations/leave_default_wait=true
+animations/cross_fade_default_length=0.5
+choices/autofocus_first=true
+choices/delay=0.2
+choices/reveal_delay=0
+choices/reveal_by_input=false
+save/autosave_delay=60.0
+save/encryption_on_exports_only=true
+text/autoadvance_enabled=true
+text/autoadvance_fixed_delay=0.9
+text/autopauses={}
+audio/channel_defaults={
+"": {
+"audio_bus": "",
+"fade_length": 0.0,
+"loop": false,
+"volume": 0.0
+},
+"music": {
+"audio_bus": "",
+"fade_length": 0.0,
+"loop": true,
+"volume": 0.0
+}
+}
 
 [display]
 

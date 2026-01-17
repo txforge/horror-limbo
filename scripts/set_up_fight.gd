@@ -49,7 +49,9 @@ func _setup_entities() -> void:
 	_spawn_bosses()
 
 func _emit_setup_complete() -> void:
+	print("DEBUG: SetUpFight - Emetto segnale setup_complete")
 	setup_complete.emit()
+	print("DEBUG: SetUpFight - Segnale emesso!")
 
 func _calculate_grid_offset() -> Vector2:
 	var viewport_size: Vector2 = get_viewport_rect().size
@@ -138,11 +140,19 @@ func _spawn_boss(index: int, display_name: String, boss_scene: PackedScene, cont
 	if boss_instance == null:
 		return null
 	container.add_child(boss_instance)
+
+	# Imposta il nome del nodo per Dialogic (Boss1, Boss2, etc.)
+	var dialogic_name = "Boss" + str(index + 1)
+	boss_instance.name = dialogic_name
+
 	if boss_instance.has_method("set"):
 		boss_instance.set("boss_index", index)
 		boss_instance.set("boss_name", display_name)
 	boss_instance.add_to_group("bosses")
 	boss_instance.add_to_group("entities")
+
+	print("DEBUG: Boss creato: ", dialogic_name, " - Posizione: ", boss_instance.get_global_position() if boss_instance is Node2D or boss_instance is Control else "N/A")
+
 	return boss_instance
 
 func get_player() -> Node:

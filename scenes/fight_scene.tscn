@@ -9,9 +9,6 @@
 [node name="fight scene" type="Node2D"]
 script = ExtResource("1_62sil")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(960, 540)
-
 [node name="SetUpFight" type="Node2D" parent="."]
 script = ExtResource("2_1v880")
 player_scene = ExtResource("3_tmx0f")

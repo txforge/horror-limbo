@@ -40,9 +40,6 @@ var _input_sequence: Array[String] = []
 ## Timer for clearing input sequence
 var _combo_timer: Timer = null
 
-## Reference to the main camera for coordinate conversion
-var _camera: Camera2D = null
-
 ## Input processing enabled/disabled state
 var _input_enabled: bool = true
 
@@ -59,7 +56,6 @@ const MOUSE_CURSOR = preload("res://assets/sprites/cursor.png")
 func _ready() -> void:
 	_setup_custom_cursor()
 	_setup_combo_timer()
-	_find_camera()
 
 ## Sets up custom mouse cursor
 func _setup_custom_cursor() -> void:
@@ -74,38 +70,6 @@ func _setup_combo_timer() -> void:
 	_combo_timer.timeout.connect(_on_combo_timer_timeout)
 	add_child(_combo_timer)
 
-## Finds and caches the main camera reference
-func _find_camera() -> void:
-	# Aspetta un frame per permettere alla scena di caricare completamente
-	await get_tree().process_frame
-
-	# Try to find camera in the scene tree - prima cerca nei gruppi
-	var cameras: Array[Node] = get_tree().get_nodes_in_group("main_camera")
-	if cameras.size() > 0 and cameras[0] is Camera2D:
-		_camera = cameras[0] as Camera2D
-		print("InputManager: Found camera in 'main_camera' group")
-	else:
-		# Fallback: search for any Camera2D
-		_camera = _find_camera_in_tree(get_tree().root)
-		if _camera != null:
-			print("InputManager: Found camera by searching tree")
-
-	if _camera == null:
-		push_error("InputManager: No Camera2D found in scene tree!")
-	else:
-		print("InputManager: Camera found successfully at ", _camera.get_path())
-
-## Recursively searches for a Camera2D node
-func _find_camera_in_tree(node: Node) -> Camera2D:
-	if node is Camera2D:
-		return node as Camera2D
-
-	for child in node.get_children():
-		var found: Camera2D = _find_camera_in_tree(child)
-		if found != null:
-			return found
-
-	return null
 
 # ============================================================================
 # INPUT PROCESSING
@@ -283,12 +247,8 @@ func _is_valid_gui_target(control: Control, pos: Vector2) -> bool:
 
 ## Finds world targets (physics bodies) at the given position
 func _find_world_target_at_position(_screen_pos: Vector2) -> Node:
-	if _camera == null:
-		push_error("InputManager: Cannot find world target - no camera reference")
-		return null
-
-	# Convert screen position to world position (usa mouse position direttamente)
-	var world_pos: Vector2 = _camera.get_global_mouse_position()
+	# Get world position from viewport
+	var world_pos: Vector2 = get_viewport().get_mouse_position()
 
 	# Set up physics query
 	var viewport: Viewport = get_viewport()
